@@ -7,18 +7,12 @@ function App() {
   const [total, setTotal] = useState(0)
 
   const operation = (bill, percent, people) => {
-    const billPerPerson = bill / people
+    const billPerPerson = bill === 0 && people === 0 ? 0 : bill / people
     const tipPerPerson = billPerPerson * (percent/100)
     const totalPerPerson = tipPerPerson + billPerPerson
 
-    setTip(tipPerPerson)
-    setTotal(totalPerPerson)
-    // console.log([tipPerPerson, totalPerPerson])
-    // console.log([typeof bill, percent, people])
-  }
-
-  const reset = () => {
-
+    setTip(tipPerPerson.toFixed(2))
+    setTotal(totalPerPerson.toFixed(2))
   }
 
   return (

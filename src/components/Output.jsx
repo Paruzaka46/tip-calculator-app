@@ -11,7 +11,6 @@ const Output = ({tip, total}) => {
                     <h1>${total ? total : "0.00"}</h1>
                 </div>
             </div>
-            <button>Reset</button>
         </div>
     )
 }
