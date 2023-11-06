@@ -17,6 +17,9 @@ function App() {
 
   return (
     <div className='container'>
+      {/* <div className='app-title'>
+        Spli<br/>tter
+      </div> */}
       <Input/>
       {/* <Output tip={tip} total={total}/> */}
     </div>

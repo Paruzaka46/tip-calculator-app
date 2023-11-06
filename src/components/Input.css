@@ -1,0 +1,126 @@
+:root {
+    /* Primary */
+    --strong-cyan: hsl(172, 67%, 45%);
+    
+    /* Neutral */
+    --very-dark-cyan: hsl(183, 100%, 15%);
+    --dark-grayish-cyan: hsl(186, 14%, 43%);
+    --grayish-cyan: hsl(184, 14%, 56%);
+    --light-grayish-cyan: hsl(185, 41%, 84%);
+    --very-light-grayish-cyan: hsl(189, 41%, 97%);
+    --error: #dc3545;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    appearance: none; 
+}
+
+input[type=number] {
+    font-size: 24px;
+    color: var(--very-dark-cyan);
+    text-align: end;
+    padding-right: 15px;
+}
+
+.input-container {
+    padding-right: 2rem;
+}
+
+.title-and-error {
+    color: var(--dark-grayish-cyan);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-and-error .error-text {
+    color: var(--error);
+}
+
+input {
+    width: 100%;
+    border: 2px solid var(--very-light-grayish-cyan);
+    background-color: var(--very-light-grayish-cyan);
+    border-radius: 5px;
+}
+
+input::placeholder {
+    text-align: end;
+    font-size: 24px;
+    color: var(--grayish-cyan);
+}
+
+input:focus {
+    outline-color: var(--strong-cyan);
+}
+
+.bill::before {
+    content: url("/images/icon-dollar.svg");
+    position: absolute;
+    transform: translate(20px, 40px);
+    z-index: 1;
+}
+
+.error-input:focus {
+    outline-color: var(--error);
+}
+
+.bill {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.bill .input-name {
+    margin-bottom: 5px;
+}
+
+.percent {
+    margin-bottom: 2rem;
+}
+
+.percent .input-name {
+    margin-bottom: 10px;
+}
+
+.percent .tip-percent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 2.5rem);
+    gap: 10px;
+    padding-bottom: 0px;
+}
+
+.percent .tip-percent button {
+    border: none;
+    background-color: var(--very-dark-cyan);
+    font-size: 24px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.percent .tip-percent button:hover {
+    background-color: var(--strong-cyan);
+    color: var(--very-dark-cyan);
+}
+
+.tip-percent input::placeholder {
+    font-size: 20px;
+}
+
+.people {
+    position: relative;
+}
+
+.people .input-name {
+    margin-bottom: 5px;
+}
+
+.people::before {
+    content: url("/images/icon-person.svg");
+    position: absolute;
+    transform: translate(20px, 40px);
+    z-index: 1;
+}
