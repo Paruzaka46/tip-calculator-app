@@ -1,4 +1,4 @@
-const Output = ({tip, total}) => {
+const Output = ({tip, total, onReset}) => {
     return (
         <div className="output-cont">
             <div className="amount">
@@ -11,6 +11,7 @@ const Output = ({tip, total}) => {
                     <h1>${total ? total : "0.00"}</h1>
                 </div>
             </div>
+            <button onClick={() => {onReset()}}>Reset</button>
         </div>
     )
 }

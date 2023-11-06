@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react"
+import Output from "./Output"
 
-const Input = ({operationFunc}) => {
+const Input = () => {
     const [params, setParams] = useState({
         bill: "",
         percent: "",
         people: ""
     })
-
     const [isZero, setIsZero] = useState({
         bill: false,
         percent: false,
         people: false
+    })
+    const [amount, setAmount] = useState({
+        tip: 0,
+        total: 0
     })
  
     const inputChange = (event) => {
@@ -65,7 +69,6 @@ const Input = ({operationFunc}) => {
                     }
                 }
             })
-
             setIsZero((prev) => {
                 if (name === "bill") {
                     return {
@@ -92,6 +95,19 @@ const Input = ({operationFunc}) => {
         }
     }
 
+    const operation = (bill, percent, people) => {
+        const billPerPerson = bill === 0 && people === 0 ? 0 : bill / people
+        const tipPerPerson = billPerPerson * (percent/100)
+        const totalPerPerson = tipPerPerson + billPerPerson
+
+        setAmount(() => {
+            return {
+                tip: tipPerPerson.toFixed(2),
+                total: totalPerPerson.toFixed(2)
+            }
+        })
+    }
+
     const resetParams = () => {
         setParams(() => {
             return {
@@ -107,12 +123,12 @@ const Input = ({operationFunc}) => {
                 people: false
             }
         })
-        operationFunc(0, 0, 0)
+        operation(0,0,0)
     }
 
     useEffect(() => {
         if (params.bill, params.percent, params.people) {
-            operationFunc(parseInt(params.bill), parseInt(params.percent), parseInt(params.people))
+            operation(parseInt(params.bill), parseInt(params.percent), parseInt(params.people))
         }
     }, [params])
 
@@ -129,7 +145,7 @@ const Input = ({operationFunc}) => {
                 <div className="percent">
                     <div className="title-error">
                         <p>Select Tip %</p>
-                        <p style={{display: "none"}}>Can't be zero</p>
+                        <p style={{display: isZero.percent ? "inline-block" : "none"}}>Can't be zero</p>
                     </div>
                     <div className="tip-percent">
                         <button onClick={inputChange} name="percent" value={5}>5%</button>
@@ -143,13 +159,12 @@ const Input = ({operationFunc}) => {
                 <div className="people">
                     <div className="title-error">
                         <p>Number of People</p>
-                        <p style={{display: "none"}}>Can't be zero</p>
+                        <p style={{display: isZero.people ? "inline-block" : "none"}}>Can't be zero</p>
                     </div>
                     <input onChange={inputChange} type="number" name="people" placeholder="0" value={params.people}/>
                 </div>
-                <button onClick={resetParams}>Reset</button>
             </div>
-            
+            <Output tip={amount.tip} total={amount.total} onReset={resetParams}/>
         </>
     )
 }
