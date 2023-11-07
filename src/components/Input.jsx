@@ -17,31 +17,28 @@ const Input = () => {
         tip: 0,
         total: 0
     })
+    const [percentChange, setPercentChange] = useState("")
  
     const inputChange = (event) => {
         const {name, value} = event.target
 
         if (value === "0") {
-            console.log("can't be zero")
             setIsZero((prev) => {
                 if (name === "bill") {
                     return {
-                        bill: true,
-                        percent: prev.percent,
-                        people: prev.people
+                        ...prev,
+                        bill: true
                     }
                 }
                 if (name === "percent") {
                     return {
-                        bill: prev.bill,
-                        percent: true,
-                        people: prev.people
+                        ...prev,
+                        percent: true
                     }
                 }
                 if (name === "people") {
                     return {
-                        bill: prev.bill,
-                        percent: prev.percent,
+                        ...prev,
                         people: true
                     }
                 }
@@ -50,22 +47,19 @@ const Input = () => {
             setParams(prev => {
                 if (name === "bill") {
                     return {
-                        bill: value,
-                        percent: prev.percent,
-                        people: prev.people
+                        ...prev,
+                        bill: value
                     }
                 }
                 if (name === "percent") {
                     return {
-                        bill: prev.bill,
-                        percent: value,
-                        people: prev.people
+                        ...prev,
+                        percent: value
                     }
                 }
                 if (name === "people") {
                     return {
-                        bill: prev.bill,
-                        percent: prev.percent,
+                        ...prev,
                         people: value
                     }
                 }
@@ -73,22 +67,19 @@ const Input = () => {
             setIsZero((prev) => {
                 if (name === "bill") {
                     return {
-                        bill: false,
-                        percent: prev.percent,
-                        people: prev.people
+                        ...prev,
+                        bill: false
                     }
                 }
                 if (name === "percent") {
                     return {
-                        bill: prev.bill,
-                        percent: false,
-                        people: prev.people
+                        ...prev,
+                        percent: false
                     }
                 }
                 if (name === "people") {
                     return {
-                        bill: prev.bill,
-                        percent: prev.percent,
+                        ...prev,
                         people: false
                     }
                 }
@@ -96,6 +87,33 @@ const Input = () => {
         }
     }
 
+    const percentInput = (event) => {
+        const {value} = event.target
+
+        if (value === "0") {
+            setIsZero(prev => {
+                return {
+                    ...prev,
+                    percent: true
+                }
+            })
+        } else {
+            setPercentChange(value)
+            setIsZero(prev => {
+                return {
+                    ...prev,
+                    percent: false
+                }
+            })
+            setParams(prev => {
+                return {
+                    ...prev,
+                    percent: percentChange
+                }
+            })
+        }
+    }
+ 
     const operation = (bill, percent, people) => {
         const billPerPerson = bill === 0 && people === 0 ? 0 : bill / people
         const tipPerPerson = billPerPerson * (percent/100)
@@ -124,6 +142,7 @@ const Input = () => {
                 people: false
             }
         })
+        setPercentChange("")
         operation(0,0,0)
     }
 
@@ -149,12 +168,12 @@ const Input = () => {
                         <p className="error-text" style={{display: isZero.percent ? "inline-block" : "none", color: "red"}}>Can't be zero</p>
                     </div>
                     <div className="tip-percent">
-                        <button onClick={inputChange} name="percent" value={5}>5%</button>
-                        <button onClick={inputChange} name="percent" value={10}>10%</button>
-                        <button onClick={inputChange} name="percent" value={15}>15%</button>
-                        <button onClick={inputChange} name="percent" value={25}>25%</button>
-                        <button onClick={inputChange} name="percent" value={50}>50%</button>
-                        <input className={isZero.percent ? "error-input" : null} onChange={inputChange} type="number" name="percent" placeholder="Custom" value={params.percent}/>
+                        <button className={params.percent === "5" ? "active" : null} onClick={inputChange} name="percent" value={5}>5%</button>
+                        <button className={params.percent === "10" ? "active" : null} onClick={inputChange} name="percent" value={10}>10%</button>
+                        <button className={params.percent === "15" ? "active" : null} onClick={inputChange} name="percent" value={15}>15%</button>
+                        <button className={params.percent === "25" ? "active" : null} onClick={inputChange} name="percent" value={25}>25%</button>
+                        <button className={params.percent === "50" ? "active" : null} onClick={inputChange} name="percent" value={50}>50%</button>
+                        <input className={isZero.percent ? "error-input" : null} onChange={percentInput} type="number" name="percent" placeholder="Custom" value={percentChange}/>
                     </div>
                 </div>
                 <div className="people">

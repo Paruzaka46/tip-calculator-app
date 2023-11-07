@@ -25,7 +25,9 @@ input[type=number] {
 }
 
 .input-container {
-    padding-right: 2rem;
+    padding: 1rem;
+    padding-right: 2.5rem;
+    font-size: 15px;
 }
 
 .title-and-error {
@@ -98,12 +100,21 @@ input:focus {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
 }
 
 .percent .tip-percent button:hover {
+    background-color: hsl(171, 72%, 71%);
+    color: var(--very-dark-cyan);
+}
+
+.percent .tip-percent .active {
     background-color: var(--strong-cyan);
     color: var(--very-dark-cyan);
+}
+
+.tip-percent input {
+    padding-right: 10px;
 }
 
 .tip-percent input::placeholder {

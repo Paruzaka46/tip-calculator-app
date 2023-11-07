@@ -1,0 +1,63 @@
+:root {
+    /* Primary */
+    --strong-cyan: hsl(172, 67%, 45%);
+    
+    /* Neutral */
+    --very-dark-cyan: hsl(183, 100%, 15%);
+    --dark-grayish-cyan: hsl(186, 14%, 43%);
+    --grayish-cyan: hsl(184, 14%, 56%);
+    --light-grayish-cyan: hsl(185, 41%, 84%);
+    --very-light-grayish-cyan: hsl(189, 41%, 97%);
+  }
+
+.output-cont {
+    background-color: var(--very-dark-cyan);
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.amount div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.amount div p {
+    font-size: 15px;
+    color: var(--very-light-grayish-cyan);
+}
+
+.amount div p span {
+    font-size: 12px;
+    color: var(--grayish-cyan);
+}
+
+.amount div h1 {
+    color: var(--strong-cyan);
+    font-size: 40px;
+}
+
+.output-cont .reset-btn {
+    border: none;
+    background-color: var(--strong-cyan);
+    text-transform: uppercase;
+    padding: 8px 0;
+    color: var(--very-dark-cyan);
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.15s;
+}
+
+.output-cont .reset-btn:hover {
+    background-color: var(--light-grayish-cyan);
+}
+
+.output-cont .reset-btn:disabled {
+    opacity: 25%;
+}

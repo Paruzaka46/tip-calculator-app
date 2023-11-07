@@ -1,4 +1,7 @@
+import "./Output.css"
+
 const Output = ({tip, total, onReset}) => {
+    
     return (
         <div className="output-cont">
             <div className="amount">
@@ -11,7 +14,7 @@ const Output = ({tip, total, onReset}) => {
                     <h1>${total && !isNaN(total) ? total : "0.00"}</h1>
                 </div>
             </div>
-            <button onClick={() => {onReset()}}>Reset</button>
+            <button className="reset-btn" onClick={() => {onReset()}} disabled={tip === 0 || tip === "0.00" ? true : false}>Reset</button>
         </div>
     )
 }
