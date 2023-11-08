@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Paruzaka46.github.io/tip-calculator-app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
