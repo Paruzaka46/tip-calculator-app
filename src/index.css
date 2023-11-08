@@ -40,3 +40,20 @@ body {
   justify-content: center;
   padding-bottom: 5rem;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .app-title {
+    padding: 2.5rem;
+    padding-top: 3rem;
+  }
+
+  .people {
+    padding-bottom: 1.5rem;
+  }
+}

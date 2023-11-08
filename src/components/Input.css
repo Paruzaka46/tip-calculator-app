@@ -135,3 +135,14 @@ input:focus {
     transform: translate(20px, 40px);
     z-index: 1;
 }
+
+@media screen and (max-width: 768px) {
+    .input-container {
+        padding: 0.5rem;
+    }
+
+    .percent .tip-percent {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 2.5rem);
+    }
+}
